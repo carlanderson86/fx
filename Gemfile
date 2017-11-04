@@ -12,5 +12,3 @@ gemspec
 
 # To use a debugger
 # gem 'byebug', group: [:development, :test]
-
-gem 'rufus-scheduler', '~> 3.4'
