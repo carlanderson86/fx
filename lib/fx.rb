@@ -2,7 +2,7 @@ require "fx/engine"
 require 'rufus-scheduler'
 
 module Fx
-  # Your code goes here...
+
 
   def self.setup(&block)
     @config ||= Fx::Engine::Configuration.new
@@ -11,11 +11,15 @@ module Fx
 
     @config
 
+    Rails.logger.debug "== Initialising FX =="
+    Rails.logger.debug "Processor #{@config.fx_processor}"
+    Rails.logger.debug "Cron String #{@config.fx_cron_string}"
+    Rails.logger.debug "Base Currency #{@config.base_currency}"
+    Rails.logger.debug "== Fx Initialised =="
+
     scheduler = Rufus::Scheduler.new
 
     scheduler.cron @config.fx_cron_string, @config.fx_processor
-
-    scheduler.join
   end
 
   def self.config
